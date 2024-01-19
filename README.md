@@ -1,1 +1,1 @@
-# playing_with_mysql
+# This project is a simple MySQL Database management application
