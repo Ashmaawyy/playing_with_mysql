@@ -74,3 +74,17 @@ titles_create_sql = (
             CONSTRAINT titles_ibfk_1 FOREIGN KEY (emp_no) REFERENCES employees (emp_no) ON DELETE CASCADE
     ) ENGINE=InnoDB" '''
     )
+
+create_queries = [employees_create_sql,
+                  departments_create_sql,
+                  salaries_create_sql,
+                  dept_emp_create_sql,
+                  dept_manager_create_sql,
+                  titles_create_sql]
+
+drop_queries = [employees_drop_sql,
+                departments_drop_sql,
+                salaries_drop_sql,
+                dept_emp_drop_sql,
+                dept_manager_drop_sql,
+                titles_drop_sql]
