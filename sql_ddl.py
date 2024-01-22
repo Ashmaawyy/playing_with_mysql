@@ -1,4 +1,11 @@
-employees = (
+employees_drop_sql = ('DROP TABLE IF EXISTS employees')
+departments_drop_sql = ('DROP TABLE IF EXISTS departments')
+salaries_drop_sql = ('DROP TABLE IF EXISTS salaries')
+dept_emp_drop_sql= ('DROP TABLE IF EXISTS dept_emp')
+dept_manager_drop_sql = ('DROP TABLE IF EXISTS  dept_manager')
+titles_drop_sql = ('DROP TABLE IF EXISTS titles')
+
+employees_create_sql = (
     ''' CREATE TABLE IF NOT EXISTS employees (
             emp_no int(11) NOT NULL AUTO_INCREMENT,
             birth_date date NOT NULL,
@@ -10,7 +17,7 @@ employees = (
     ) ENGINE=InnoDB
     ''')
 
-departments = (
+departments_create_sql = (
     ''' CREATE TABLE IF NOT EXISTS departments (
             dept_no char(4) NOT NULL,
             dept_name varchar(40) NOT NULL,
@@ -19,8 +26,8 @@ departments = (
     '''
     )
 
-salaries = (
-    ''' CREATE TABLE IF NOT EXISTS `salaries` (
+salaries_create_sql = (
+    ''' CREATE TABLE IF NOT EXISTS salaries (
             emp_no int(11) NOT NULL,
             salary int(11) NOT NULL,
             from_date date NOT NULL,
@@ -30,8 +37,8 @@ salaries = (
     ) ENGINE=InnoDB '''
     )
 
-dept_emp = (
-    ''' CREATE TABLE IF NOT EXISTS `dept_emp` (
+dept_emp_create_sql = (
+    ''' CREATE TABLE IF NOT EXISTS dept_emp (
             emp_no int(11) NOT NULL,
             dept_no char(4) NOT NULL,
             from_date date NOT NULL,
@@ -43,7 +50,7 @@ dept_emp = (
     ) ENGINE=InnoDB '''
     )
 
-dept_manager = (
+dept_manager_create_sql = (
     ''' CREATE TABLE IF NOT EXISTS dept_manager (
             emp_no int(11) NOT NULL,
             dept_no char(4) NOT NULL,
@@ -57,13 +64,13 @@ dept_manager = (
     ) ENGINE=InnoDB '''
     )
 
-titles = (
-    ''' CREATE TABLE IF NOT EXISTS `titles` (
-            `emp_no` int(11) NOT NULL,
-            `title` varchar(50) NOT NULL,
-            `from_date` date NOT NULL,
-            `to_date` date DEFAULT NULL,
-            PRIMARY KEY (`emp_no`,`title`,`from_date`), KEY `emp_no` (`emp_no`),
-            CONSTRAINT `titles_ibfk_1` FOREIGN KEY (`emp_no`) REFERENCES `employees` (`emp_no`) ON DELETE CASCADE
+titles_create_sql = (
+    ''' CREATE TABLE IF NOT EXISTS titles (
+            emp_no int(11) NOT NULL,
+            title varchar(50) NOT NULL,
+            from_date date NOT NULL,
+            to_date date DEFAULT NULL,
+            PRIMARY KEY (emp_no,title,from_date), KEY emp_no (emp_no),
+            CONSTRAINT titles_ibfk_1 FOREIGN KEY (emp_no) REFERENCES employees (emp_no) ON DELETE CASCADE
     ) ENGINE=InnoDB" '''
     )
